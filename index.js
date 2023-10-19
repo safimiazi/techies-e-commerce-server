@@ -72,14 +72,14 @@ app.get('/brandDetails/:id', async(req, res) => {
 //add to cart
 app.post('/myCart', async(req, res)=>{
   const cart = req.body;
-  
+  console.log(cart)
   const result =await cartCollection.insertOne(cart)
   res.send(result)
  })
 
 
  app.get('/myCart', async(req, res)=> {
-  const cursor = cartCollection.find()
+  
   const result = await cursor.toArray()
   res.send(result)
 })
