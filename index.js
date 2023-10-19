@@ -94,7 +94,7 @@ app.post('/myCart', async(req, res)=>{
 
 app.delete("/myCart/:id", async (req, res) => {
    
-  const id = req.params.id
+  // const id = req.params.id
   
   const query ={_id : id}
   const result = await cartCollection.deleteOne(query);
@@ -117,7 +117,7 @@ const updateDoc = {
     photo: newInfo.photo
   }
 }
-const result =  brandDetailsCollection.updateOne(filter, updateDoc, options);
+const result = await brandDetailsCollection.updateOne(filter, updateDoc, options);
 res.send(result)
 })
 
