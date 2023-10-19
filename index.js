@@ -79,7 +79,7 @@ app.post('/myCart', async(req, res)=>{
 
 
  app.get('/myCart', async(req, res)=> {
-  
+  const cursor = cartCollection.find()
   const result = await cursor.toArray()
   res.send(result)
 })
