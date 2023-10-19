@@ -72,7 +72,7 @@ app.get('/brandDetails/:id', async(req, res) => {
 //add to cart
 app.post('/myCart', async(req, res)=>{
   const cart = req.body;
-  console.log(cart)
+  
   const result =await cartCollection.insertOne(cart)
   res.send(result)
  })
@@ -94,7 +94,7 @@ app.post('/myCart', async(req, res)=>{
 
 app.delete("/myCart/:id", async (req, res) => {
    
-  // const id = req.params.id
+  const id = req.params.id
   
   const query ={_id : id}
   const result = await cartCollection.deleteOne(query);
