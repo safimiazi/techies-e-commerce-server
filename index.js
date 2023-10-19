@@ -33,7 +33,7 @@ const cartCollection = database.collection("cart");
 // add product
 app.post('/brands', async(req, res)=>{
  const brand = req.body;
- 
+ console.log(brand)
  const result =await brandCollection.insertOne(brand)
  res.send(result)
 })
@@ -42,7 +42,7 @@ app.post('/brands', async(req, res)=>{
 app.get('/brands', async(req, res)=> {
   const cursor = brandCollection.find()
   const result = await cursor.toArray()
-  res.send(result)
+  
 })
 
 
