@@ -33,7 +33,7 @@ const cartCollection = database.collection("cart");
 // add product
 app.post('/brands', async(req, res)=>{
  const brand = req.body;
- console.log(brand)
+ 
  const result =await brandCollection.insertOne(brand)
  res.send(result)
 })
@@ -83,6 +83,47 @@ app.post('/myCart', async(req, res)=>{
   const result = await cursor.toArray()
   res.send(result)
 })
+
+
+// app.delete("/myCart/:id", async (req, res) => {
+//   const id = req.params.id
+//   const query ={_id : new ObjectId(id)}
+//   const result = await cartCollection.deleteOne(query)
+//   res.send(result)
+// });
+
+app.delete("/myCart/:id", async (req, res) => {
+   
+  const id = req.params.id
+  
+  const query ={_id : id}
+  const result = await cartCollection.deleteOne(query);
+  res.send(result)
+});
+
+//update:
+app.put('/brandDetails/:id', async(req, res)=> {
+const id = req.params.id;
+const newInfo = req.body;
+const filter = { _id: new ObjectId(id) };
+const options = { upsert: true };
+const updateDoc = {
+  $set: {
+    name: newInfo.name,
+    brand: newInfo.brand,
+    type: newInfo.type, 
+    price: newInfo.price, 
+    rating: newInfo.rating, 
+    photo: newInfo.photo
+  }
+}
+const result = await brandDetailsCollection.updateOne(filter, updateDoc, options);
+res.send(result)
+})
+
+
+
+
 
 
 
