@@ -42,7 +42,7 @@ app.post('/brands', async(req, res)=>{
 app.get('/brands', async(req, res)=> {
   const cursor = brandCollection.find()
   const result = await cursor.toArray()
-  res.send()
+  res.send(result)
 })
 
 
@@ -117,7 +117,7 @@ const updateDoc = {
     photo: newInfo.photo
   }
 }
-const result = await brandDetailsCollection.updateOne(filter, updateDoc, options);
+const result =  brandDetailsCollection.updateOne(filter, updateDoc, options);
 res.send(result)
 })
 
